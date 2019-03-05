@@ -21,7 +21,7 @@ $cakeDescription = 'Asiakasrekisteri';
 </head>
 <body>
 
-<!-- Navbar -->
+<!-- Navbar  TÄMÄ PITÄÄ VIELÄ KORJATA!! -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="#"><?= $this->fetch('title') ?></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,6 +32,9 @@ $cakeDescription = 'Asiakasrekisteri';
       <li class="nav-item active">
         <a class="nav-link" href="#"><?php echo $this->Html->link('Home', '/'); ?><span class="sr-only">(current)</span></a>
       </li>
+    </ul>
+    <ul class="right">
+      <li><?= $this->Html->link(__('Logout'), ['controller'=>'users', 'action'=>'logout']); ?></li>
     </ul>
   </div>
 </nav>
