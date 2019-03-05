@@ -17,17 +17,18 @@
 </nav>
 <div class="users view large-9 medium-8 columns content">
     <h3><?= h($customer->nimi) ?></h3>
+    <h4> view.ctp </h4>
     <table class="vertical-table">
         <tr>
-            <th scope="row"><?= __('Name') ?></th>
+            <th scope="row"><?= __('Nimi') ?></th>
             <td><?= h($customer->nimi) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Email') ?></th>
-            <td><?= h($customer->email) ?></td>
+            <th scope="row"><?= __('Sähköposti') ?></th>
+            <td><?= h($customer->sposti) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Password') ?></th>
+            <th scope="row"><?= __('Osoite') ?></th>
             <td><?= h($customer->osoite) ?></td>
         </tr>
         <tr>

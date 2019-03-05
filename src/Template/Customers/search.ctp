@@ -27,28 +27,4 @@ echo $this->Form->end();  //closes the form
 
 ?>
 
-<!-- IF found, show: -->
-<?= $this->Element('cust_result'); ?> 
 
-<!-- KOKEILU 
-<table>
-   <tr>
-      <td>ID</td>
-      <td>Username</td>
-      <td>Password</td>
-      <td>Edit</td>
-      <td>Delete</td>
-   </tr>
-
-   <?php
-      foreach ($results as $row):
-         echo "<tr><td>".$row->id."</td>";
-         echo "<td>".$row->nimi."</td>";
-         echo "<td>".$row->osoite."</td>";
-         echo "<td><a href = '".$this->Url->build
-         (["controller" => "Customers","action"=>"edit",$row->id])."'>Edit</a></td>";
-         
-      endforeach;
-   ?>
-</table>
--->
