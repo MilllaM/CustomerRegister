@@ -41,7 +41,7 @@ class AppController extends Controller
         ]);
         //allow the display action so the PagesController continues to work.
         //Also enable the read-only actions.
-        $this->Auth->allow(['display', 'view', 'index']);
+        $this->Auth->allow(['display', 'view']);
 
         /*
          * Enable the following component for recommended CakePHP security settings.

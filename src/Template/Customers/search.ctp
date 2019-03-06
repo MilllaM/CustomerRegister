@@ -3,6 +3,7 @@
 <h1>Etsi asiakas</h1>
 <?php
 echo $this->Form->create("", ['type' => 'get']);
+//echo $this->Form->create("");
 
 // yo. tulos: <form method="get" accept-charset="utf-8" action="/asiakasDb/search?nimi=Laila&amp;tyyppikoodi=20">
 

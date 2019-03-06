@@ -13,8 +13,8 @@ $cakeDescription = 'Asiakasrekisteri';
     </title>
     <?= $this->Html->meta('icon') ?>
 
-    <?= $this->Html->css('https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css') ?>
-    <?= $this->Html->css('\webroot\css\oma.css') ?>
+    <?= $this->Html->css('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css') ?>
+    <?= $this->Html->css('/webroot/css/oma.css') ?>
     
     <?= $this->fetch('meta') ?>
 
@@ -23,18 +23,18 @@ $cakeDescription = 'Asiakasrekisteri';
 
 <!-- Navbar  TÄMÄ PITÄÄ VIELÄ KORJATA!! -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#"><?= $this->fetch('title') ?></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  <a class="navbar-brand" href="#">Asiakasrekisteri</a>
+  <!-- <a class="navbar-brand" href="#"><?php echo $this->Html->link('Asiakasrekisteri', '/'); ?></a> -->
+
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="#"><?php echo $this->Html->link('Home', '/'); ?><span class="sr-only">(current)</span></a>
+        <!-- <a class="nav-link" href="#"><?php echo $this->Html->link(' Home ', '/'); ?><span class="sr-only">(current)</span></a> -->
+        <?php echo $this->Html->link('Etusivu', '/'); ?>
       </li>
     </ul>
-    <ul class="right">
-      <li><?= $this->Html->link(__('Logout'), ['controller'=>'users', 'action'=>'logout']); ?></li>
+    <ul class="navbar-nav right">
+      <li class="nav-item"><?= $this->Html->link(__(' Logout'), ['controller'=>'users', 'action'=>'logout']); ?></li>
     </ul>
   </div>
 </nav>
@@ -43,18 +43,15 @@ $cakeDescription = 'Asiakasrekisteri';
 
     <?= $this->Flash->render() ?>
     <div class="container clearfix">
-    <div class="row">
-        <div class="col-md-4 col-lg-3 col-sm-4">
-        <h4>* placeholder * in default.ctp</h4>
-           
-        </div>
-        <div class="col-md-8 col-lg-9 col-sm-8">
-            <?= $this->fetch('content') ?> <!-- this will show the content from the "routes"   -->
-        </div>
+      <div class="row">
+          <div class="col-md-3 col-lg-2 col-sm-3">
+            
+          </div>
+          <div class="col-md-9 col-lg-10 col-sm-9">
+              <?= $this->fetch('content') ?> <!-- this will show the content from the "routes"   -->
+          </div>
+      </div>        
     </div>
-        
-    </div>
-
 
     <footer>
     </footer>

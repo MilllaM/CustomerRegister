@@ -11,12 +11,14 @@ class CustomersController extends AppController {
     }
 
     public function search() {
+        //if($this->request->is('get')) {
       
         $etsittavanimi = $this->request->getQuery('nimi');
         $etsittavatyyppi = $this->request->getQuery('tyyppikoodi');
    
-        echo $etsittavanimi;      
-        echo $etsittavatyyppi;
+       // echo $etsittavanimi;      
+        //echo $etsittavatyyppi;
+        
 
         $haku = $this->Customers
             ->find()
@@ -26,18 +28,20 @@ class CustomersController extends AppController {
 
            //hakuehtojen tarkistus:
         if($haku) {
+            /*
             echo "Löytyi! <br>";
             //$this->setAction('view', $haku);
             print_r('Haun tulos, nimi: ' . $haku['nimi'] . '<br>');
             print_r('Haun tulos, sposti: ' . $haku['sposti']. '<br>');
             print_r('Haun tulos, osoite: ' . $haku['osoite']);
-    
-            $this->viewone($haku);  //lähetetään haun tulos viewone-functiolle
+    */
+            $this->viewone($haku);  //lähetetään haun tulos viewone-functiolle - TOIMII!
+            
             //$this->redirect(['action' => 'viewone', $haku]);
-         } else {
-            echo "Ei oo tommost asiakast.";
-         }         
-             
+         }
+        //  echo "Ei oo tommost asiakast.";
+                  
+        //} 
         //return $this->redirect(['action' => 'viewone', $haku]);
         //if($this->request->is('get')){
         //    $this->redirect(['action' => 'viewone', $haku]);
@@ -66,8 +70,8 @@ class CustomersController extends AppController {
 
 
     public function viewone($loydetty) {  
-        echo '<br> No nyt tultiin viewoneen <br>';
-        print_r('Haun tulos, sposti: ' . $loydetty['sposti']. '<br>');
+        //echo '<br> No nyt tultiin viewoneen <br>';
+        //print_r('Haun tulos, sposti: ' . $loydetty['sposti']. '<br>');
           
         $this->set('loydetty', $loydetty);
         $this->render('viewone');  
@@ -99,7 +103,9 @@ class CustomersController extends AppController {
             $customer = $this->Customers->patchEntity($customer, $this->request->getData());
             if ($this->Customers->save($customer)) {
                 $this->Flash->success(__('Asiakastiedot on nyt päivitetty.'));
-                return $this->redirect(['action'=> 'view']);
+                //return $this->redirect(['action'=> 'view']); TÄÄ TOIMII
+                
+                return $this->redirect(['action'=> 'view', $id]);
             }
             $this->Flash->error(__('Päivitys EI onnistunut'));
         }
