@@ -7,22 +7,8 @@
  */
 ?>
 
-<!--
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Customer'), ['action' => 'edit', $loydetty->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete'), 
-            ['action' => 'delete', $loydetty->id], 
-            ['confirm' => __('Are you sure you want to delete # {0}?', $loydetty->id)]
-            ) ?> 
-        </li>
-        <li><?= $this->Html->link(__('Uusi asiakas'), ['action' => 'add']) ?> </li>
-    </ul>
-</nav>
--->
 <div class="users view large-9 medium-8 columns content">
-    <h3><?= h($loydetty['nimi']) ?></h3>
+    <h1><?= h($loydetty['nimi']) ?></h1>
     <br>
     <table class="vertical-table">
         <tr>
@@ -49,13 +35,15 @@
      
     </table>
     <br>
-
-    <ul class="">       
-        <li><?= $this->Html->link(__('Muuta tämän asiakkaan tietoja'), ['action' => 'edit', $loydetty->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete'), 
-            ['action' => 'delete', $loydetty->id], 
-            ['confirm' => __('Are you sure you want to delete # {0}?', $loydetty->id)]
-            ) ?> 
-        </li>       
-    </ul>
+    <div class="valinnat">         
+        <br><button type="button" class="btn btn-primary btn-lg"><?= $this->Html->link(__('Muuta tämän asiakkaan tietoja'), ['action' => 'edit', $loydetty->id]) ?></button>
+        
+        <br>
+        <button type="button" class="btn btn-danger btn-lg"> <?= $this->Form->postLink(__('Poista tämä asiakas'), 
+        ['action' => 'delete', $loydetty->id], 
+        ['confirm' => __('Are you sure you want to delete # {0}?', $loydetty->id)]
+        ) ?> </button>
+        <br>
+        <button type="button" class="btn btn-primary btn-lg"><?= $this->Html->link(__('Tee uusi haku'), ['action' => 'search']) ?></button>
+    </div>
 </div>

@@ -1,3 +1,15 @@
+<h3>Löydetty</h3>
+<ul class="list-group">
+    <?php foreach ($results as $loyto):  ?>
+    <li class="list-group-item">
+        <?=   
+        echo $loyto->osoite; ?>
+        </li>
+    <?php endforeach;  ?>
+</ul>
+
+<!--
+
 <h1><?php echo $haku['nimi']; ?></h1>
          
         <?php echo $haku['created']; ?>
@@ -8,8 +20,8 @@
         <a href="<?php  echo ROOT_URL; ?>poista.php?id=<?php echo $haku['id']; ?>" class="btn btn-danger">Delete</a>
     
     </div>
-
-<!-- vaihtoehto ? ? -->
+-->
+<!-- vaihtoehto ? ? 
 <?php
     foreach ($results as $row):
         echo "<tr><td>".$row->id."</td>";
@@ -20,3 +32,4 @@
         
     endforeach;
 ?>
+-->

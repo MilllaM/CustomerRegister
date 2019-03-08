@@ -35,6 +35,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/', ['controller' => 'Customers', 'action' => 'index']);
     
     $routes->connect('/search/', ['controller' => 'Customers', 'action' => 'search']);    
+    $routes->connect('/hae/*', ['controller' => 'Customers', 'action' => 'hae']);    
     $routes->connect('/view/', ['controller' => 'Customers', 'action' => 'viewAll']);  //for testing only
     $routes->connect('/viewone/', ['controller' => 'Customers', 'action' => 'viewone']);  //for testing only
     $routes->connect('/view/*', ['controller' => 'Customers', 'action' => 'view']);

@@ -7,10 +7,30 @@
 ?>
 
 <h1>Login</h1>
-<?= $this->Form->create()?>
-    <?= $this->Form->control('email') ?>
-    <?= $this->Form->control('password') ?>
-    <?= $this->Form->button('Login') ?>
-<?= $this->Form->end() ?>
+<?php 
+echo $this->Form->create();
+
+echo $this->Form->control('email', array(
+    'label' => 'Sähköposti',
+    'type' => 'text',
+    'class' => 'form-control',
+    'placeholder' => 'sposti'
+)); 
+echo $this->Form->control('password', array(
+    'label' => 'Salasana',
+    'type' => 'password',
+    'class' => 'form-control',
+    'placeholder' => 'salasana',
+    'required' => true
+    
+));
+
+echo '<br>';
+
+echo $this->Form->button('Kirjaudu sisään', ['type' => 'submit', 'class' =>'btn btn-primary']);
+
+echo $this->Form->end();
+
+?>
 
 

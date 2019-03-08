@@ -1,28 +1,13 @@
 <!-- file: src/Template/Customers/view.ctp -->
 
-<?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\User $user
- */
-?>
-<!--
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit User'), ['action' => 'edit', $customer->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete User'), ['action' => 'delete', $customer->id], ['confirm' => __('Are you sure you want to delete # {0}?', $customer->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Users'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New User'), ['action' => 'add']) ?> </li>
-    </ul>
-</nav>
--->
+
 <div class="users view large-9 medium-8 columns content">
-    <h3><?= h($customer->nimi) ?></h3>
+    <h1><?= h($customer->nimi) ?></h1>
     <br>
     <table class="vertical-table">
         <tr>
             <th scope="row"><?= __('Nimi') ?></th>
+            <!-- h() escapes user content -->
             <td><?= h($customer->nimi) ?></td>
         </tr>
         <tr>
@@ -50,4 +35,4 @@
 </div>
 <br>
 
-<button><?= $this->Html->link(__('Paluu etusivulle'), ['action' => 'index']) ?> </button>
+<button type="button" class="btn btn-primary btn-lg"><?= $this->Html->link(__('Paluu etusivulle'), ['action' => 'index']) ?> </button>

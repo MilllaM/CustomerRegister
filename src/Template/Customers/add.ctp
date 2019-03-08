@@ -41,7 +41,7 @@ echo $this->Form->control('tyyppikoodi', array(
 ));
 
 echo '<br>';
-echo $this->Form->button(__('Lisää uusi asiakas'));
+
 echo $this->Form->button('Lisää rekisteriin', ['type' => 'submit', 'class' =>'btn btn-primary']);
 echo $this->Form->end();  //closes the form
 

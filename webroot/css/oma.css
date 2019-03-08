@@ -1,5 +1,45 @@
 ul.navbar-nav.right {
     position: fixed;
-    right: 20px;
-    
+    right: 20px;    
+}
+
+li.nav-item a {
+    padding: 20px;
+}
+
+.btn.btn-primary.btn-lg {
+    color: #fff;
+    background-color: #00cc99;
+    border-color: #009973;
+    margin-bottom: 20px;
+} 
+
+.btn.btn-info.btn-lg {
+    color: #fff;
+    background-color: #000099;
+    border-color: #000066;
+    margin-bottom: 20px;
+}
+
+.btn.btn-danger.btn-lg {
+    margin-bottom: 20px;
+}
+
+.btn.btn-primary.btn-lg a {
+    color: #fff;     
+}
+.btn.btn-info.btn-lg a {
+    color: #fff;     
+}
+.btn.btn-danger a {
+    color: #fff;
+}
+
+h1 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+}
+th tr {
+    padding: 8px;
 }
