@@ -90,4 +90,20 @@ class UsersController extends AppController
         $this->Flash->success('Kirjauduit juuri ulos.');
         return $this->redirect($this->Auth->logout());
     }
+
+
+    //src: https://github.com/pitocms/cake-3-ajax-search/blob/master/Controller/TagsController.php
+    public function search()
+    {
+        $this->request->allowMethod('ajax');
+   
+        $keyword = $this->request->query('keyword');
+        $query = $this->Users->find('all',[
+              'conditions' => ['name LIKE'=>'%'.$keyword.'%'],
+              'order' => ['Users.id'=>'DESC'],
+              'limit' => 3
+        ]);
+        $this->set('users', $this->paginate($query));
+        $this->set('_serialize', ['users']);
+    }
 }

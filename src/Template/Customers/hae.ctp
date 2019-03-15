@@ -4,18 +4,44 @@
 <?php
     //echo $this->Form->create($customer);
     echo $this->Form->create();
-    echo $this->Form->control('nimi');
-    echo $this->Form->radio('tyyppikoodi', ['10' =>'yritysasiakas', '20'=> 'yksityisasiakas'] );
+    echo $this->Form->radio('tyyppikoodi', ['10' =>'yritysasiakas', '20'=> 'yksityisasiakas'] );  
+    echo $this->Form->control('nimi', array(
+        'label' => 'Etsittävä',
+        'type' => 'text',
+        'class' => 'form-control',
+        'placeholder' => 'anna etsittävä nimi'
+    ));    
     echo '<br>';
+
+/*
+  //select2 trial
+    echo $this->Ajax->autoComplete_ui('Customer.search', array(
+        'source' => array(
+            'controller' => 'Customers',
+            'action' => 'autoComplete',
+        ),
+    ));
+*/
+
     echo $this->Form->button(__('Etsi'));
+  
     echo $this->Form->end();
 ?>
 
 
 
-<!--
-<div class="input text"><label for="nimi">Nimi</label><input type="text" name="nimi" id="nimi"></div>    
-<label for="tyyppikoodi-10"><input type="radio" name="tyyppikoodi" value="10" id="tyyppikoodi-10">yritysasiakas</label>
--->
 
-<?php  echo $this->element('testi', $haku); ?>
+<?php
+if(!empty($haku)) {
+    echo $this->element('asnaytto'); 
+    
+}
+else {
+    echo 'Eipä löytynyt moista.';
+}
+?>
+
+
+<!-- <?php  echo $this->element('asnaytto'); ?> -->
+
+

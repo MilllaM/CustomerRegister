@@ -1,22 +1,4 @@
-<?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\User[]|\Cake\Collection\CollectionInterface $users
- */
-?>
-
-<div class="users index large-9 medium-8 columns content">
-    <br>
-    <h3><?= __('Users') ?></h3>
-    <br>
-
-    
-
-    <?= $this->form->control('search');?>
-    <br>
-
-    <div class="table-content">
-    <table cellpadding="0" cellspacing="0" class="table table-dark table-striped">
+<table cellpadding="0" cellspacing="0" class="table table-dark table-striped">
         <thead>
             <tr>
                
@@ -32,8 +14,7 @@
             <tr>
                 
                 <td><?= h($user->name) ?></td>
-                <td><?= h($user->email) ?></td>
-               
+                <td><?= h($user->email) ?></td>            
                
                 <td><?= h($user->modified) ?></td>
                 <td class="actions">
@@ -57,29 +38,3 @@
         </ul>
         <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
     </div>
-    <br>
-    <button class ="btn btn-info btn-lg"><?= $this->Html->link(__('Lisää uusi käyttäjä'), ['action' => 'add']) ?></button>
-    </div>
-</div>
-
-<script>
-    $('document').ready(function(){
-         $('#search').keyup(function(){
-            var searchkey = $(this).val();
-            searchUsers( searchkey );
-         });
-         
-        function searchUsers( keyword ){
-        var data = keyword;
-        $.ajax({
-                    method: 'get',
-                    url : "<?php echo $this->Url->build( [ 'controller' => 'Users', 'action' => 'search' ] ); ?>",
-                    data: {keyword:data},
-                    success: function( response )
-                    {       
-                       $( '.table-content' ).html(response);
-                    }
-                });
-        };
-    });
-</script>

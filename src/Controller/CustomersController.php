@@ -3,6 +3,8 @@
 
 namespace App\Controller;
 use Cake\ORM\TableRegistry;
+	
+use Setasign\tFpdf;
 
 class CustomersController extends AppController {
 
@@ -81,31 +83,28 @@ class CustomersController extends AppController {
     
 
     public function search() {
-        if($this->request->is('get')) {
-      
-        $etsittavanimi = $this->request->getQuery('nimi');
-        $etsittavatyyppi = $this->request->getQuery('tyyppikoodi');
-   
-       // echo $etsittavanimi;      
-        //echo $etsittavatyyppi;
-        
-        $haku = $this->Customers
-            ->find()
-            ->where(['nimi' => $etsittavanimi, 'tyyppikoodi'=> $etsittavatyyppi])
-            ->first();
-           // ->all();
+        if($this->request->is('get')) {      
+            $etsittavanimi = $this->request->getQuery('nimi');
+            $etsittavatyyppi = $this->request->getQuery('tyyppikoodi');
+          
+            $haku = $this->Customers
+                ->find()
+                ->where(['nimi' => $etsittavanimi, 'tyyppikoodi'=> $etsittavatyyppi])
+                ->first();
+            // ->all();
 
            //hakuehtojen tarkistus:
-        if($haku) {   
-            $this->viewone($haku);  //lähetetään haun tulos viewone-functiolle - TOIMII!                        
-        } else {           
-            $this->Flash->error('Ei oo tommost asiakast.');
-        }
-    } 
+            if($haku) {   
+                $this->viewone($haku);  //lähetetään haun tulos viewone-functiolle - TOIMII!                        
+            } else {           
+                $this->Flash->error('Ei oo tommost asiakast.');
+            }
+        } //END if
         //$this->set(compact('customer')); //passing DB result to the template             
     }
 
-    public function hae( ) {
+
+    public function hae() {        
         if ($this->request->is(['post', 'put'])) {
             $etsittavanimi = $this->request->getData('nimi');
             $etsittavatyyppi = $this->request->getData('tyyppikoodi');
@@ -116,14 +115,80 @@ class CustomersController extends AppController {
             ->first();
 
             //tee elementti ctp-sivulle, ja vie hakutulos siihen
-           
-                $result = $haku->toArray();
-              
-                $this->set('haku', $result);
-              
+            $this->set('haku', $haku);    
         }
+        
+    }
+
+   
 
 
+    public function teefilu($id) {
+               
+        $haettava = $this->Customers->get($id);
+
+        $pdf = new \tFPDF();
+        $pdf->AddPage();
+        //$pdf->SetFont('Arial','B',16);
+        $pdf->AddFont('DejaVu','','DejaVuSansCondensed.ttf',true);
+        $pdf->SetFont('DejaVu','',16);
+    
+        $pdf->Cell(60,30, $haettava['nimi']);
+        $pdf->Ln(30);
+        $pdf->SetFont('DejaVu','',12);
+        $pdf->Cell(60,20, 'Sposti: ' .$haettava['sposti']);
+        $pdf->Ln(10);
+        $pdf->Cell(60,20, 'Puhelin: ' .$haettava['puhelin']);
+        $pdf->Ln(10);
+        $pdf->Cell(60,20,'Osoite: '.$haettava['osoite']);
+        $pdf->Ln(10);
+        $pdf->Cell(60,20, 'Rekisterissä ' .date('d/m/Y', strtotime($haettava['created'])) . ' alkaen');
+ 
+        $pdf->Ln(10);
+        $pdf->Cell(60,20, 'Viimeisin muokkaus: ' . date('d/m/Y', strtotime($haettava['modified'])));
+
+
+        $pdf->Output();
+        exit;
+
+    }
+
+    public function autoComplete() {
+        $this->autoRender = false;
+        $customers = $this->Customer->find('all', array(
+            'conditions' => array(
+            'Customer.nimi LIKE' => '%' . $_GET['term'] . '%',
+            )));
+        echo json_encode($this->_encode($customers));
+    }
+
+    public function select2haku() {
+        //$this->Customer->recursive = 0; //mitä recursive tekee?
+        //$this->set('customers');
+    }
+
+    public function search2() {
+        $this->autoRender = false;
+        echo('Kiekuu');
+        $term = $this->request->query['q'];  // get the search term from URL
+        echo('Kukkuu');
+        echo $term;
+        //die();
+        $customers = $this->Customer->find('all', array(  //db query
+            'conditions' => array(
+                'Customer.nimi LIKE' => '%'.$term.'%'
+            )
+        ));
+        // Format the result for select2
+        $result = array();
+        foreach($customers as $key => $customer) {
+            $result[$key]['id'] = (int) $customer['Customer']['id'];
+            $result[$key]['text'] = $customer['Customer']['nimi'];
+        }
+        $customers = $result;
+        //echo $customers;
+        
+        echo json_encode($customers);
     }
 }
 ?>
