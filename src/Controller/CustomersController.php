@@ -169,16 +169,19 @@ class CustomersController extends AppController {
 
     public function search2() {
         $this->autoRender = false;
-        echo('Kiekuu');
-        $term = $this->request->query['q'];  // get the search term from URL
-        echo('Kukkuu');
-        echo $term;
+        //$this->request->allowMethod('ajax');
+        
+        echo 'Kiekuu';
         //die();
-        $customers = $this->Customer->find('all', array(  //db query
-            'conditions' => array(
-                'Customer.nimi LIKE' => '%'.$term.'%'
-            )
-        ));
+        $keyword = $this->request->query['q'];  // get the search term from URL
+        echo $keyword;
+        $customers = $this->Customer->find('all', [  //db query
+            'conditions' => ['nimi LIKE' => '%' . $keyword . '%']
+        ]);
+        //$this->set('customers'); //onko liian aikaisin, jos tässä. Ts. tarvitaanko alaosaa?
+    
+
+
         // Format the result for select2
         $result = array();
         foreach($customers as $key => $customer) {
@@ -189,6 +192,7 @@ class CustomersController extends AppController {
         //echo $customers;
         
         echo json_encode($customers);
+        
     }
 }
 ?>

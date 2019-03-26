@@ -98,6 +98,7 @@ class UsersController extends AppController
         $this->request->allowMethod('ajax');
    
         $keyword = $this->request->query('keyword');
+        
         $query = $this->Users->find('all',[
               'conditions' => ['name LIKE'=>'%'.$keyword.'%'],
               'order' => ['Users.id'=>'DESC'],

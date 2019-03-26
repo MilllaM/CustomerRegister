@@ -50,6 +50,8 @@ Router::scope('/', function (RouteBuilder $routes) {
         ->setPass(['id']);
     $routes->connect('/teefilu/*', ['controller' => 'Customers', 'action' => 'teefilu']);
     $routes->connect('/select2haku/', ['controller' => 'Customers', 'action' => 'select2haku']);
+    $routes->connect('/search2/', ['controller' => 'Customers', 'action' => 'search2']);
+ 
 
     
 

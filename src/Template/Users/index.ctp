@@ -66,6 +66,7 @@
     $('document').ready(function(){
          $('#search').keyup(function(){
             var searchkey = $(this).val();
+            //console.log(searchkey);
             searchUsers( searchkey );
          });
          
